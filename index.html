@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cel-Trainer: Eukaryote Cel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🧬 Cel-Trainer: Eukaryote Cel</h1>
+    <p>Sleep de juiste namen naar de vakjes op de cel!</p>
+  </header>
+
+  <div class="game-container">
+    
+    <!-- Bovenbalk met spelinformatie -->
+    <div class="status-bar">
+      <div class="stat-box">Niveau: <span id="level-display">1 / 3</span></div>
+      <div class="stat-box">Score: <span id="score-display">0</span></div>
+      <div class="stat-box">Tijd: <span id="timer-display">05:00</span></div>
+    </div>
+
+    <!-- Voortgangsbalk -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Feedback melding -->
+    <div class="feedback-message" id="feedback-message">Kies een naamvakje en sleep het naar het juiste vakje!</div>
+
+    <div class="main-play-area">
+      
+      <!-- Het Cel Diagram (SVG Afbeelding) -->
+      <div class="cell-diagram-container">
+        <svg viewBox="0 0 600 450" class="cell-svg">
+          <!-- Celwand / Membraan -->
+          <rect x="20" y="20" width="560" height="410" rx="40" class="svg-cell-border" />
+          <rect x="30" y="30" width="540" height="390" rx="30" class="svg-cell-membrane" />
+          <rect x="40" y="40" width="520" height="370" rx="20" class="svg-cytoplasm" />
+
+          <!-- Celkern -->
+          <circle cx="200" cy="210" r="65" class="svg-nucleus" />
+          <circle cx="190" cy="200" r="25" class="svg-nucleolus" />
+
+          <!-- Mitochondriën -->
+          <ellipse cx="420" cy="120" rx="45" ry="22" class="svg-mitochondria" />
+          <ellipse cx="420" cy="320" rx="45" ry="22" class="svg-mitochondria" />
+
+          <!-- Vacuole -->
+          <polygon points="320,180 390,190 380,260 310,240" class="svg-vacuole" />
+
+          <!-- Bladgroenkorrel -->
+          <ellipse cx="120" cy="110" rx="40" ry="20" class="svg-chloroplast" />
+
+          <!-- Endoplasmatisch Reticulum -->
+          <path d="M 265,200 Q 285,170 295,210 T 310,200" class="svg-er" />
+
+          <!-- Ribosomen -->
+          <circle cx="280" cy="140" r="4" class="svg-ribosome" />
+          <circle cx="295" cy="150" r="4" class="svg-ribosome" />
+          <circle cx="270" cy="160" r="4" class="svg-ribosome" />
+        </svg>
+
+        <!-- Drop Zones (Plekken waar je kunt neerdroppen) -->
+        <div id="drop-zones-container"></div>
+      </div>
+
+      <!-- Draggable items (Namen van organellen) -->
+      <div class="draggable-container">
+        <h3>Namen</h3>
+        <div class="labels-list" id="labels-container">
+          <!-- Dynamisch ingevuld vanuit JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Volgende Niveau / Resulaten knop -->
+    <div class="controls">
+      <button id="next-btn" class="btn" disabled>Volgend Niveau ➔</button>
+    </div>
+
+  </div>
+
+  <!-- Eindscherm Modal -->
+  <div class="modal" id="end-modal">
+    <div class="modal-content">
+      <h2>🎉 Gefeliciteerd!</h2>
+      <p id="final-stats">Je hebt alle organellen goed benoemd!</p>
+      <button class="btn" onclick="location.reload()">Opnieuw Spelen</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
